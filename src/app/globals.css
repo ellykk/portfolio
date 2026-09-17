@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light palette */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --surface-muted: #f3f1ec;
+  --border: #e6e2da;
+  --text: #1f2a24;
+  --text-muted: #5b6862;
+  --primary: #2d6a4f;
+  --primary-hover: #245741;
+  --primary-soft: #e4efe9;
+  --accent: #d4a373;
+  --accent-soft: #f6ebdd;
+  /* Darker gold for small text so it passes contrast on light surfaces */
+  --accent-text: #8a5a24;
+  --on-primary: #ffffff;
+  color-scheme: light;
+}
+
+/* Dark palette, derived from the same greens and golds */
+.dark {
+  --bg: #111614;
+  --surface: #181f1b;
+  --surface-muted: #1f2823;
+  --border: #2a352f;
+  --text: #e8e6e1;
+  --text-muted: #a3aea8;
+  --primary: #6fbf95;
+  --primary-hover: #86cca8;
+  --primary-soft: #1e3329;
+  --accent: #dcb283;
+  --accent-soft: #3a2f22;
+  --accent-text: #dcb283;
+  --on-primary: #0f1a15;
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+  --color-on-primary: var(--on-primary);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --radius-2xl: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+/* Consistent, visible focus ring everywhere */
+:where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Native dialog backdrop */
+dialog::backdrop {
+  background: rgb(15 26 21 / 0.55);
+  backdrop-filter: blur(2px);
+}
+
+/* Hide scrollbars in the gallery track but keep it scrollable */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
