@@ -134,17 +134,17 @@ export const experience: ExperienceItem[] = [
   {
     role: "Business Process Automation Intern",
     org: "Globe Telecom",
-    period: "June 2026 – July 2026",
+    period: "June 2026 – September 2026",
   },
   {
     role: "Director, Technical Committee",
     org: "DLSUD Computer Science Program Council",
-    period: "Nov 2025 – Present",
+    period: "Nov 2025 – 2027",
   },
   {
     role: "BS Computer Science",
     org: "De La Salle University Dasmariñas",
-    period: "2023 – Present",
+    period: "2023 – 2027",
   },
 ];
 
