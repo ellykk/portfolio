@@ -77,8 +77,8 @@ export const profile: Profile = {
   location: "Cavite, Philippines",
   title: "Full-Stack Developer & Automation Engineer",
   email: "kylecedricpanganiban@gmail.com",
-  linkedin: "https://www.linkedin.com/in/your-handle",
-  github: "https://github.com/your-handle",
+  linkedin: "https://www.linkedin.com/in/kyle-panganiban/",
+  github: "https://github.com/ellykk",
   photo: "/profile.jpg",
   photoAlt: "Portrait of Kyle Panganiban",
 };
