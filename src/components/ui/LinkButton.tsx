@@ -7,6 +7,8 @@ type LinkButtonProps = {
   variant?: "primary" | "outline";
   icon?: ReactNode;
   external?: boolean;
+  /** Ask the browser to save the file instead of navigating to it. */
+  download?: boolean;
 };
 
 export function LinkButton({
@@ -15,6 +17,7 @@ export function LinkButton({
   variant = "outline",
   icon,
   external = false,
+  download = false,
 }: LinkButtonProps) {
   const base =
     "inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 hover:-translate-y-px active:translate-y-0";
@@ -29,7 +32,12 @@ export function LinkButton({
     : {};
 
   return (
-    <a href={href} className={`${base} ${variants[variant]}`} {...externalProps}>
+    <a
+      href={href}
+      className={`${base} ${variants[variant]}`}
+      {...(download ? { download: "" } : {})}
+      {...externalProps}
+    >
       {icon}
       <span>{children}</span>
       {external && (

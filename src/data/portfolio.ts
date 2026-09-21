@@ -15,7 +15,14 @@ export type Profile = {
   github: string;
   /** Path under /public. */
   photo: string;
+  /**
+   * Optional second photo under /public, swapped in when dark mode is on.
+   * Leave it out to use `photo` in both themes.
+   */
+  photoDark?: string;
   photoAlt: string;
+  /** Path under /public to the downloadable resume PDF. */
+  resume: string;
 };
 
 export type TechGroup = {
@@ -34,6 +41,18 @@ export type Highlight = {
   org: string;
   date: string;
   kind: "leadership" | "certificate";
+  /**
+   * Path to an image under /public/certificates/. When set, the card becomes
+   * clickable and the image is shown in a modal.
+   */
+  image?: string;
+  /**
+   * Path to a PDF under /public/certificates/. When set, the modal shows a
+   * "View original" button that opens the PDF in a new tab.
+   */
+  pdf?: string;
+  /** One or two lines of context shown under the image in the modal. */
+  description?: string;
 };
 
 export type Project = {
@@ -80,7 +99,9 @@ export const profile: Profile = {
   linkedin: "https://www.linkedin.com/in/kyle-panganiban/",
   github: "https://github.com/ellykk",
   photo: "/profile.jpg",
+  photoDark: "/profile-dark.jpg",
   photoAlt: "Portrait of Kyle Panganiban",
+  resume: "/resume.pdf",
 };
 
 export const about: string[] = [
@@ -154,30 +175,48 @@ export const highlights: Highlight[] = [
     org: "Eskwelabs",
     date: "2026",
     kind: "leadership",
+    image: "/certificates/eskwelabs-webinar.jpg",
+    description:
+      "Co-presented a public webinar on where AI-generated code stops and human design judgment has to take over.",
   },
   {
     title: "Tech Team Lead, Back to BasiCS & AI Conference 2026",
     org: "DLSUD",
     date: "2026",
     kind: "leadership",
+    image: "/certificates/back-to-basics-2026.jpg",
+    description:
+      "Led the technical team behind the conference: live stream, audio, and on-stage playback across the full program.",
   },
   {
     title: "Fundamentals of Git & GitHub",
     org: "DOST",
     date: "Nov 2025",
     kind: "certificate",
+    image: "/certificates/dost-git-github.jpg",
+    pdf: "/certificates/dost-git-github.pdf",
+    description:
+      "DOST training on version control fundamentals, branching, and collaborative workflows on GitHub.",
   },
   {
     title: "JavaScript Essentials 1",
     org: "Cisco",
     date: "May 2025",
     kind: "certificate",
+    image: "/certificates/cisco-javascript-essentials-1.jpg",
+    pdf: "/certificates/cisco-javascript-essentials-1.pdf",
+    description:
+      "Cisco Networking Academy course covering core JavaScript syntax, data types, functions, and DOM basics.",
   },
   {
     title: "TOEIC English Proficiency",
     org: "DLSUD",
     date: "Mar 2026",
     kind: "certificate",
+    image: "/certificates/toeic.jpg",
+    pdf: "/certificates/toeic.pdf",
+    description:
+      "Test of English for International Communication, taken through De La Salle University Dasmariñas.",
   },
 ];
 
@@ -255,9 +294,28 @@ export const projects: Project[] = [
 ];
 
 export const gallery: GalleryImage[] = [
-  { src: "/gallery/1.jpg", alt: "Gallery photo 1. Replace this alt text." },
-  { src: "/gallery/2.jpg", alt: "Gallery photo 2. Replace this alt text." },
-  { src: "/gallery/3.jpg", alt: "Gallery photo 3. Replace this alt text." },
-  { src: "/gallery/4.jpg", alt: "Gallery photo 4. Replace this alt text." },
-  { src: "/gallery/5.jpg", alt: "Gallery photo 5. Replace this alt text." },
+  {
+    src: "/gallery/1.jpg",
+    alt: "Awardees holding certificates and medals at the CICS Code of Excellence Awards.",
+  },
+  {
+    src: "/gallery/2.jpg",
+    alt: "CICS men's volleyball team poster for Animo Cup 2026.",
+  },
+  {
+    src: "/gallery/3.jpg",
+    alt: "Volunteers at the SpeciFi specialization fair booth.",
+  },
+  {
+    src: "/gallery/4.jpg",
+    alt: "Tech team working on laptops at the International Conference on Artificial Intelligence.",
+  },
+  {
+    src: "/gallery/5.jpg",
+    alt: "CSPC officers at the Panimola freshman orientation booth.",
+  },
+  {
+    src: "/gallery/6.jpg",
+    alt: "Team photo with shirts and caps at the Globe AIC Make Time for PLAI event.",
+  },
 ];

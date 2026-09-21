@@ -26,6 +26,29 @@ export function Gallery() {
     return () => window.removeEventListener("resize", updateButtons);
   }, [updateButtons]);
 
+  // Click-and-drag panning for mouse users; touch already scrolls natively.
+  const drag = useRef<{ x: number; left: number } | null>(null);
+
+  function startDrag(e: React.PointerEvent<HTMLUListElement>) {
+    const track = trackRef.current;
+    if (!track || e.pointerType === "touch") return;
+    drag.current = { x: e.clientX, left: track.scrollLeft };
+    track.setPointerCapture(e.pointerId);
+  }
+
+  function moveDrag(e: React.PointerEvent<HTMLUListElement>) {
+    const track = trackRef.current;
+    if (!track || !drag.current) return;
+    track.scrollLeft = drag.current.left - (e.clientX - drag.current.x);
+  }
+
+  function endDrag(e: React.PointerEvent<HTMLUListElement>) {
+    const track = trackRef.current;
+    if (!track || !drag.current) return;
+    drag.current = null;
+    track.releasePointerCapture(e.pointerId);
+  }
+
   function scrollByCard(direction: 1 | -1) {
     const track = trackRef.current;
     if (!track) return;
@@ -66,7 +89,11 @@ export function Gallery() {
       <ul
         ref={trackRef}
         onScroll={updateButtons}
-        className="scrollbar-none -mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 pb-1"
+        onPointerDown={startDrag}
+        onPointerMove={moveDrag}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        className="scrollbar-none -mx-1 flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-1 select-none active:cursor-grabbing"
       >
         {gallery.map((image, i) => (
           <li
@@ -79,6 +106,7 @@ export function Gallery() {
               fill
               sizes="(max-width: 640px) 85vw, (max-width: 768px) 60vw, (max-width: 1024px) 45vw, 400px"
               loading={i === 0 ? "eager" : "lazy"}
+              draggable={false}
               className="object-cover"
             />
           </li>

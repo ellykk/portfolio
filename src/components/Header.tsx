@@ -1,4 +1,4 @@
-import { Mail, MapPin } from "lucide-react";
+import { FileText, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { profile } from "@/data/portfolio";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/BrandIcons";
@@ -7,6 +7,9 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Header() {
+  const photoClass =
+    "size-28 shrink-0 rounded-2xl border border-border object-cover sm:size-32";
+
   return (
     <Card as="header" className="relative">
       <div className="absolute top-4 right-4 sm:top-5 sm:right-5">
@@ -14,14 +17,29 @@ export function Header() {
       </div>
 
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+        {/*
+          Both photos are rendered and swapped with CSS, so the right one is
+          already in place on first paint. The hidden one is `display: none`,
+          which keeps it out of the accessibility tree.
+        */}
         <Image
           src={profile.photo}
           alt={profile.photoAlt}
           width={128}
           height={128}
           priority
-          className="size-28 shrink-0 rounded-2xl border border-border object-cover sm:size-32"
+          className={`${photoClass} ${profile.photoDark ? "dark:hidden" : ""}`}
         />
+        {profile.photoDark && (
+          <Image
+            src={profile.photoDark}
+            alt={profile.photoAlt}
+            width={128}
+            height={128}
+            priority
+            className={`hidden ${photoClass} dark:block`}
+          />
+        )}
 
         <div className="min-w-0 flex-1 pr-12 sm:pr-14">
           <h1 className="text-3xl font-semibold text-text sm:text-4xl">
@@ -56,6 +74,14 @@ export function Header() {
               icon={<GitHubIcon className="size-4" />}
             >
               GitHub
+            </LinkButton>
+            <LinkButton
+              href={profile.resume}
+              external
+              download
+              icon={<FileText className="size-4" aria-hidden="true" />}
+            >
+              Resume
             </LinkButton>
           </div>
         </div>
