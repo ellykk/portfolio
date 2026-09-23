@@ -10,7 +10,7 @@ export function Header() {
   // The portraits have transparent backgrounds, so the tint behind them is
   // what keeps the subject readable in both themes.
   const photoClass =
-    "size-28 shrink-0 rounded-2xl border border-border bg-primary-soft object-cover sm:size-32";
+    "size-36 shrink-0 rounded-2xl border border-border bg-primary-soft object-cover sm:size-44";
 
   return (
     <Card as="header" className="relative">
@@ -27,8 +27,9 @@ export function Header() {
         <Image
           src={profile.photo}
           alt={profile.photoAlt}
-          width={128}
-          height={128}
+          width={384}
+          height={384}
+          quality={95}
           priority
           className={`${photoClass} ${profile.photoDark ? "dark:hidden" : ""}`}
         />
@@ -36,8 +37,9 @@ export function Header() {
           <Image
             src={profile.photoDark}
             alt={profile.photoAlt}
-            width={128}
-            height={128}
+            width={384}
+            height={384}
+            quality={95}
             priority
             className={`hidden ${photoClass} dark:block`}
           />

@@ -200,6 +200,16 @@ export const highlights: Highlight[] = [
       "Led the technical team behind the conference: live stream, audio, and on-stage playback across the full program.",
   },
   {
+    title: "AI Ready ASEAN",
+    org: "ASEAN Foundation & Google.org",
+    date: "May 2026",
+    kind: "certificate",
+    image: "/certificates/ai-ready-asean.jpg",
+    pdf: "/certificates/ai-ready-asean.pdf",
+    description:
+      "Completed all 15 AI literacy modules, covering generative AI fundamentals, prompting, AI ethics, and data privacy.",
+  },
+  {
     title: "Fundamentals of Git & GitHub",
     org: "DOST",
     date: "Nov 2025",
