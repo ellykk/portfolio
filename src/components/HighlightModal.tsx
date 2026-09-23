@@ -91,6 +91,21 @@ export function HighlightModal({ highlight, onClose }: HighlightModalProps) {
             </p>
           )}
 
+          {highlight.verify && (
+            <a
+              href={highlight.verify}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 text-sm font-medium text-text transition-colors hover:border-primary hover:text-primary"
+            >
+              Verify credential
+              <ExternalLink
+                className="size-3.5 opacity-70"
+                aria-hidden="true"
+              />
+            </a>
+          )}
+
           {highlight.pdf && (
             <a
               href={highlight.pdf}
@@ -99,7 +114,10 @@ export function HighlightModal({ highlight, onClose }: HighlightModalProps) {
               className="mt-5 inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 text-sm font-medium text-text transition-colors hover:border-primary hover:text-primary"
             >
               View original
-              <ExternalLink className="size-3.5 opacity-70" aria-hidden="true" />
+              <ExternalLink
+                className="size-3.5 opacity-70"
+                aria-hidden="true"
+              />
             </a>
           )}
         </div>

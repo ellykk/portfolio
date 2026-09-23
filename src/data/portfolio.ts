@@ -51,6 +51,8 @@ export type Highlight = {
    * "View original" button that opens the PDF in a new tab.
    */
   pdf?: string;
+  /** Public verification page for the credential, such as a Credly badge. */
+  verify?: string;
   /** One or two lines of context shown under the image in the modal. */
   description?: string;
 };
@@ -229,8 +231,9 @@ export const highlights: Highlight[] = [
     org: "Cisco",
     date: "May 2025",
     kind: "certificate",
-    image: "/certificates/cisco-javascript-essentials-1.jpg",
-    pdf: "/certificates/cisco-javascript-essentials-1.pdf",
+    image: "/certificates/cisco-javascript-essentials-1.png",
+    verify:
+      "https://www.credly.com/badges/06b03e3a-5ed2-4ef8-88de-8e80e8e7f246",
     description:
       "Cisco Networking Academy course covering core JavaScript syntax, data types, functions, and DOM basics.",
   },
