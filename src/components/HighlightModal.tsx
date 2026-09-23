@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, X } from "lucide-react";
+import { ExternalLink, PlayCircle, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import type { Highlight } from "@/data/portfolio";
@@ -89,6 +89,18 @@ export function HighlightModal({ highlight, onClose }: HighlightModalProps) {
             <p className="mt-4 text-[15px] leading-relaxed text-text-muted">
               {highlight.description}
             </p>
+          )}
+
+          {highlight.recording && (
+            <a
+              href={highlight.recording}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 text-sm font-medium text-text transition-colors hover:border-primary hover:text-primary"
+            >
+              <PlayCircle className="size-4 opacity-70" aria-hidden="true" />
+              Watch the recording
+            </a>
           )}
 
           {highlight.verify && (

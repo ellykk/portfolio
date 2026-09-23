@@ -53,6 +53,8 @@ export type Highlight = {
   pdf?: string;
   /** Public verification page for the credential, such as a Credly badge. */
   verify?: string;
+  /** Link to a recording of the session. */
+  recording?: string;
   /** One or two lines of context shown under the image in the modal. */
   description?: string;
 };
@@ -194,6 +196,8 @@ export const highlights: Highlight[] = [
     date: "2026",
     kind: "leadership",
     image: "/certificates/eskwelabs-webinar.jpg",
+    recording:
+      "https://drive.google.com/file/d/1a5Ep1um6in-UrFsVmyQJQtYwv4JFZSmN/view",
     description:
       "Co-presented a public webinar on where AI-generated code stops and human design judgment has to take over.",
   },
