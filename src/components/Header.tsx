@@ -7,8 +7,10 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Header() {
+  // The portraits have transparent backgrounds, so the tint behind them is
+  // what keeps the subject readable in both themes.
   const photoClass =
-    "size-28 shrink-0 rounded-2xl border border-border object-cover sm:size-32";
+    "size-28 shrink-0 rounded-2xl border border-border bg-primary-soft object-cover sm:size-32";
 
   return (
     <Card as="header" className="relative">

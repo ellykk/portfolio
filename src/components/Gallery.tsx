@@ -26,6 +26,30 @@ export function Gallery() {
     return () => window.removeEventListener("resize", updateButtons);
   }, [updateButtons]);
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    // Turn a vertical wheel into sideways travel. React's onWheel is passive,
+    // so preventDefault only works on a listener bound here.
+    function onWheel(event: WheelEvent) {
+      if (!track || event.ctrlKey) return;
+      const delta =
+        Math.abs(event.deltaY) > Math.abs(event.deltaX)
+          ? event.deltaY
+          : event.deltaX;
+      if (!delta) return;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      // At either end, hand the wheel back to the page.
+      const atStart = delta < 0 && track.scrollLeft <= 0;
+      const atEnd = delta > 0 && track.scrollLeft >= maxScroll - 1;
+      if (atStart || atEnd) return;
+      event.preventDefault();
+      track.scrollLeft += delta;
+    }
+    track.addEventListener("wheel", onWheel, { passive: false });
+    return () => track.removeEventListener("wheel", onWheel);
+  }, []);
+
   // Click-and-drag panning for mouse users; touch already scrolls natively.
   const drag = useRef<{ x: number; left: number } | null>(null);
 
@@ -93,7 +117,7 @@ export function Gallery() {
         onPointerMove={moveDrag}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
-        className="scrollbar-none -mx-1 flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-1 select-none active:cursor-grabbing"
+        className="scrollbar-none -mx-1 flex cursor-grab snap-x snap-proximity gap-4 overflow-x-auto px-1 pb-1 select-none active:cursor-grabbing"
       >
         {gallery.map((image, i) => (
           <li

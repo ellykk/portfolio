@@ -76,7 +76,7 @@ export type GalleryImage = {
 export const siteMeta = {
   /** Set NEXT_PUBLIC_SITE_URL in Vercel to override this. */
   url: "https://kylepanganiban.vercel.app",
-  title: "Kyle Panganiban | Full-Stack Developer & Automation Engineer",
+  title: "Kyle Panganiban | AI Automation & Engineer",
   description:
     "Portfolio of Kyle Panganiban, a Computer Science student from Cavite, Philippines who builds full-stack web apps, automation pipelines, and AI-assisted systems.",
   keywords: [
@@ -94,12 +94,12 @@ export const profile: Profile = {
   fullName: "Kyle Cedric R. Panganiban",
   displayName: "Kyle Panganiban",
   location: "Cavite, Philippines",
-  title: "Full-Stack Developer & Automation Engineer",
+  title: "AI Automation & Engineer",
   email: "kylecedricpanganiban@gmail.com",
   linkedin: "https://www.linkedin.com/in/kyle-panganiban/",
   github: "https://github.com/ellykk",
-  photo: "/profile.jpg",
-  photoDark: "/profile-dark.jpg",
+  photo: "/profile.png",
+  photoDark: "/profile-dark.png",
   photoAlt: "Portrait of Kyle Panganiban",
   resume: "/resume.pdf",
 };
@@ -117,7 +117,14 @@ export const techStack: TechGroup[] = [
   },
   {
     group: "Web & Backend",
-    items: ["Next.js", "Hono", "Drizzle ORM", "Tailwind CSS", "Supabase", "Redis"],
+    items: [
+      "Next.js",
+      "Hono",
+      "Drizzle ORM",
+      "Tailwind CSS",
+      "Supabase",
+      "Redis",
+    ],
   },
   {
     group: "Automation & Data",
@@ -145,6 +152,10 @@ export const currentFocus = {
     "Live Event Tech",
   ],
 };
+
+/** One-line statement shown in its own card under Current Focus. */
+export const quote =
+  "Building real-world systems that combine clean design, performance, and practical AI solutions.";
 
 export const experience: ExperienceItem[] = [
   {
@@ -238,8 +249,7 @@ export const projects: Project[] = [
     slug: "fellowship-alumni-network",
     title: "Fellowship Alumni Network",
     org: "Eskwelabs",
-    summary:
-      "Platform connecting fellowship alumni with mentors and peers.",
+    summary: "Platform connecting fellowship alumni with mentors and peers.",
     details: [
       "Wrote the product requirements document that framed the scope and user flows.",
       "Supported feature development across the Next.js front end and the Drizzle-backed data layer.",
