@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { projects, type Project } from "@/data/portfolio";
 import { Card } from "@/components/ui/Card";
@@ -25,7 +26,16 @@ export function Projects() {
 
   return (
     <Card as="section" aria-labelledby="projects-title">
-      <SectionTitle id="projects-title">Projects</SectionTitle>
+      <div className="flex items-center justify-between">
+        <SectionTitle id="projects-title">Projects</SectionTitle>
+        <Link
+          href="/projects"
+          className="mb-4 inline-flex items-center gap-1 text-xs font-medium text-text-muted transition-colors hover:text-primary"
+        >
+          View All
+          <ArrowUpRight className="size-3.5" aria-hidden="true" />
+        </Link>
+      </div>
       <ul className="space-y-3">
         {projects.map((project) => (
           <li key={project.slug}>
@@ -50,7 +60,10 @@ export function Projects() {
                 />
               </div>
               <p className="mt-1 text-sm text-text-muted">{project.summary}</p>
-              <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Technologies">
+              <ul
+                className="mt-3 flex flex-wrap gap-1.5"
+                aria-label="Technologies"
+              >
                 {project.tags.map((tag) => (
                   <li key={tag}>
                     <Chip>{tag}</Chip>

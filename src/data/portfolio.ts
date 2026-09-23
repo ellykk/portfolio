@@ -65,6 +65,11 @@ export type Project = {
   details: string[];
   tags: string[];
   link?: string;
+  /**
+   * Internal client work. The full list page then shows the write-up only,
+   * with no demo or source link.
+   */
+  internal?: boolean;
 };
 
 export type GalleryImage = {
@@ -277,6 +282,7 @@ export const projects: Project[] = [
       "Generates charts, tables, and commentary slides directly from the source spreadsheets.",
     ],
     tags: ["Google Apps Script", "Google Slides"],
+    internal: true,
   },
   {
     slug: "utility-billing-verification",
@@ -289,6 +295,7 @@ export const projects: Project[] = [
       "Saves the team around 40 hours of manual review every week.",
     ],
     tags: ["Apps Script", "AI", "Automation"],
+    internal: true,
   },
   {
     slug: "spontrip",
